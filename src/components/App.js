@@ -1,28 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 import Nav from "./Nav";
 import HogTile from "./HogTile";
-import hogs from "../porkers_data"
+import Form from "./Form";
+import hogs from "../porkers_data";
 
 function App() {
-	const [hogs, setHogs] = useState(hogs)
+  //const [currentHogs, setCurrentHogs] = useState(hogs);
 
-	const hogTiles = hogs.map((hogsObj) => {
-		return (
-			<HogTile
-			name={hogsObj.name}
-			specialty={hogsObj.specialty}
-			greased={hogsObj.greased}
-    		weight={hogsObj.weight}
-    		image={hogsObj.image}
-			/>
-
-		)
-	})
-	return (
-		<div className="App">
-			<Nav />
-		</div>
-	);
+  const hogTiles = hogs.map((hogsObj) => {
+    return (
+      <HogTile
+        key={hogs.name}
+        name={hogsObj.name}
+        specialty={hogsObj.specialty}
+        greased={hogsObj.greased}
+        weight={hogsObj.weight}
+        image={hogsObj.image}
+      />
+    );
+  });
+  return (
+    <div className="App">
+      <Nav />
+      <Form hogs={hogs} />
+      <main>{hogTiles}</main>
+    </div>
+  );
 }
 
 export default App;
