@@ -16,6 +16,16 @@ function Form({ hogs, setCurrentHogs }) {
     setCurrentHogs(searchedHog);
   }
 
+  function handleGreasedChecked(e) {
+    setGreased(!greased);
+    if (e.target.checked) {
+      const greasedHogs = hogs.filter((hog) => {
+        return hog.greased === true;
+      });
+      setCurrentHogs(greasedHogs);
+    } else setCurrentHogs(hogs);
+  }
+
   return (
     <form onSubmit={handleNameInput}>
       <h3>Find a Hog</h3>
@@ -23,7 +33,11 @@ function Form({ hogs, setCurrentHogs }) {
         Name
         <input type="text" id="name" value={searchName} onChange={(e) => setSearchName(e.target.value)} />
       </label>
-      <input type="submit" />
+      <input type="submit" />{" "}
+      <label>
+        {"   "}
+        Show Greased Only <input type="checkbox" id="greased" checked={greased} onChange={handleGreasedChecked} />
+      </label>
     </form>
   );
 } // enf function
@@ -45,9 +59,3 @@ export default Form;
 //   <option value="medium">2-4 lb</option>
 //   <option value="large">4+ lb</option>
 // </select>
-
-// <label>
-//   {"   "}
-//   Show Greased Only
-//   <input type="checkbox" id="greased" checked={greased} onChange={(e) => setGreased(e.target.checked)} />
-// </label>
