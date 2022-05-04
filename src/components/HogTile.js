@@ -20,7 +20,7 @@ function HogTile({ hogs }) {
   return (
     <div className="pigTile" onClick={handleClick}>
       <h2>{hogs.name}</h2>
-      <img height="100" width="100" src={hogs.image} alt={hogs.name} />
+      <img height="200" width="250" src={hogs.image} alt={hogs.name} />
       {details}
     </div>
   );

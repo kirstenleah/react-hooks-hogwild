@@ -8,7 +8,7 @@ function Form({ hogs, setCurrentHogs }) {
   function handleNameInput(e) {
     e.preventDefault();
     const searchedHog = hogs.filter((hog) => {
-      if (hog.name.includes(searchName)) {
+      if (hog.name.toLowerCase().includes(searchName)) {
         return hog;
       }
     });
@@ -17,19 +17,20 @@ function Form({ hogs, setCurrentHogs }) {
   }
 
   function handleWeight(e) {
+    setWeight(e.target.value);
     const weightSelection = e.target.value;
     console.log(weightSelection);
     const weightClass = hogs.filter((hog) => {
-      if (weightSelection === "small" && hog.weight <= 2) {
-        console.log("inside the if");
-        console.log(hog);
-        return hog;
-      } else if (weightSelection === "medium" && hog.weight >= 2 && hog.weight <= 4) {
-        return hog;
-      } else if (weightSelection === "large" && hog.weight >= 4) {
-        return hog;
-      } else if (weightSelection === "default") {
-        return setCurrentHogs(hogs);
+      if (weightSelection !== "default") {
+        if (weightSelection === "small" && hog.weight <= 2) {
+          return hog;
+        } else if (weightSelection === "medium" && hog.weight >= 2 && hog.weight <= 4) {
+          return hog;
+        } else if (weightSelection === "large" && hog.weight >= 4) {
+          return hog;
+        }
+      } else {
+        return hogs;
       }
     });
     setCurrentHogs(weightClass);
@@ -65,7 +66,7 @@ function Form({ hogs, setCurrentHogs }) {
       </label>
     </form>
   );
-} // enf function
+} // end of function
 
 export default Form;
 
